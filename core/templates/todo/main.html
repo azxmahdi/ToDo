@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load cache %} 
+{% block main %}
+<main>
+    <section class="task-container">
+        <h2>My Tasks</h2>
+        <form class="pt-3" method="POST" action="{% url 'todo:create_task' %}">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+              <input type="text" class="form-control rounded-4" name="title" placeholder="Enter task title"
+                aria-label="Recipient's username" aria-describedby="button-addon2">
+              <button class="btn btn-primary" type="submit">Add</button>
+            </div>
+        </form>
+
+        <ul id="task-list">
+            {% for task in tasks %}
+            
+                <li class="{% if task.is_done %}done{% endif %}">
+                    <span>{{ task.title }}</span>
+
+
+                    <button onclick="location.href='{% url 'todo:edit_task' task.pk %}'">Edit</button>
+                    <form class="pt-3" method="POST" action="{% url 'todo:delete_task' task.pk %}">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form>
+                    
+                    <form class="pt-3" method="POST" action="{% url 'todo:toggle_task' task.pk %}">
+                        {% csrf_token %}
+                        <button>{% if task.is_done %}Restore{% else %}Done{% endif %}
+                    </form>
+                        
+                </li>  
+            {% endfor %}
+        </ul>
+    </section>
+</main>
+{% endblock %}

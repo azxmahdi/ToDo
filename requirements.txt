@@ -1,0 +1,35 @@
+django>4.2,<4.3
+python-decouple
+Pillow
+django-simple-captcha==0.6.0
+djangorestframework
+markdown
+django-filter
+drf-yasg[validation]
+djangorestframework-simplejwt
+django-mail-templated
+django-cors-headers
+
+# code clean
+black
+flake8
+
+# test
+pytest-django
+pytest
+referencing
+Faker
+
+# backgound proccess and cache
+celery
+django-celery-beat
+redis
+
+# cache
+django-redis
+requests
+
+
+# production
+gunicorn
+psycopg2-binary

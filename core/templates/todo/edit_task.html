@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Edit Task</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header>
+    <h1>Task Manager</h1>
+  </header>
+  <div class="task-container">
+    <h2>Edit Task</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Save</button>
+      <button onclick="location.href='{% url 'todo:list_task' %}'">Cancel</button>
+    </form>
+
+    {% if form.errors %}
+      <div class="error">
+        <h2>Errors:</h2>
+        <ul>
+          {% for field in form %}
+            {% for error in field.errors %}
+              <li>{{ field.label }}: {{ error }}</li>
+            {% endfor %}
+          {% endfor %}
+          {% for error in form.non_field_errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  </div>
+  <footer>
+    <p>&copy; 2023 Task Manager</p>
+  </footer>
+</body>
+</html>
