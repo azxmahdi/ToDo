@@ -26,4 +26,4 @@ jobs:
       run: docker-compose up -d
       
     - name: Pytest
-      run: pytest .
+      run: docker-compose exec backend sh -c "pytest ."
