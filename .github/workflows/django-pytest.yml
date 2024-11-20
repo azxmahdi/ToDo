@@ -9,12 +9,21 @@ on:
 jobs:
 
   build:
-
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v4
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Install Docker Compose
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y docker-compose
+
     - name: Build the Docker-compose project
       run: docker-compose up -d
+      
     - name: Pytest
-      run: pytest
+      run: pytest .
