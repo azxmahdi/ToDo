@@ -37,7 +37,4 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_SSH_KEY }}
         script: |
-          cd ToDo
-          git pull origin main
-          docker-compose down
-          docker-compose up -d --build
+          ls
