@@ -26,7 +26,7 @@ jobs:
         run: docker-compose -f docker-compose-stage.yml build --parallel
         
       - name: Up project
-        run: docker-compose -f docker-compose-stage.yml up -d --no-deps
+        run: docker-compose -f docker-compose-stage.yml up -d 
 
       - name: Run pytest
         run: docker-compose exec -T backend sh -c "pytest ."
