@@ -28,7 +28,8 @@ DEBUG = config("DEBUG", cast=bool,default=True)
 
 ALLOWED_HOSTS = [
     "backend",
-    "127.0.0.1"
+    "127.0.0.1",
+    "188.121.118.239"
 ]
 
 

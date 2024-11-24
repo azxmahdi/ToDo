@@ -36,7 +36,7 @@ services:
     build: .
     env_file:
       - ./env/.env.prod
-    command: gunicorn --bind 0.0.0.0:8000 --workers 17 core.wsgi:application --env DJANGO_SETTINGS_MODULE=core.setting.settings_prod
+    command: gunicorn --bind 0.0.0.0:8000 --workers 5 core.wsgi:application --env DJANGO_SETTINGS_MODULE=core.setting.settings_prod
     container_name: backend
     volumes:
       - ./core:/app
