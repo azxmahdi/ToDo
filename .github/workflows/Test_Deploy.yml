@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  test:
+  tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,15 +22,18 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y docker-compose
 
+      - name: Build Docker images
+        run: docker-compose -f docker-compose-stage.yml build --parallel
+        
       - name: Up project
-        run: docker-compose -f docker-compose-stage.yml up -d
+        run: docker-compose -f docker-compose-stage.yml up -d --no-deps
 
       - name: Run pytest
         run: docker-compose exec -T backend sh -c "pytest ."
 
   deploy:
     runs-on: ubuntu-latest
-    needs: test
+    needs: tests
     if: success()
 
     steps:
