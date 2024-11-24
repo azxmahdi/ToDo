@@ -8,7 +8,7 @@ on:
 
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -22,11 +22,11 @@ jobs:
       run: docker-compose build
 
     - name: Run tests
-      run: docker-compose run web python manage.py test
+      run: pytest .
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs: test
     if: success()
 
     steps:
@@ -37,7 +37,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         key: ${{ secrets.VPS_SSH_KEY }}
         script: |
-          cd /path/to/your/project
+          cd ToDo
           git pull origin main
           docker-compose down
           docker-compose up -d --build
