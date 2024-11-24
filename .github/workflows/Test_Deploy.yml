@@ -23,8 +23,8 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y docker-compose
 
-    - name: Build Docker image
-      run: docker-compose build
+    - name: Up project
+      run: docker-compose -f docker-compose-stage.yml up -d
 
     - name: Run pytest
       run: docker-compose exec -T backend sh -c "pytest ."
