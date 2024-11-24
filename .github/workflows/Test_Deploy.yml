@@ -26,8 +26,8 @@ jobs:
     - name: Build Docker image
       run: docker-compose build
 
-    - name: Run tests
-      run: pytest .
+    - name: Run pytest
+      run: docker-compose exec -T backend sh -c "pytest ."
 
   deploy:
     runs-on: ubuntu-latest
